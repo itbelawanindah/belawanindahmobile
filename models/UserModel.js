@@ -22,7 +22,7 @@ const userSchema = new Schema({
   },
   password: {
     type: String,
-    required: true,
+    required: false,
   },
   description: {
     type: String,
@@ -88,6 +88,11 @@ const userSchema = new Schema({
     required: false,
   },
   last_login: {
+    type: Date,
+    required: false,
+  },
+  
+  updated_password: {
     type: Date,
     required: false,
   },

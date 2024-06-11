@@ -53,7 +53,7 @@ module.exports = {
                 password: hash,
                 username,
                 name,
-                roles: 'admins-Author',
+                roles: 'customer-Author',
                 is_active: 1,
                 created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
 

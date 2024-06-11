@@ -2,8 +2,8 @@ const express = require('express')
 
 const router = express.Router()
 
-const requireAuth = require('../middleware/requireAuth')
-const assetCategoryController = require('../controllers/assetCategoryController')
+const requireAuth = require('../../middleware/requireAuth')
+const assetCategoryController = require('../../controllers/assetCategoryController')
 
 
 router.use(requireAuth)
