@@ -10,7 +10,8 @@ const validator = require('validator');
 module.exports = {
     get_all_users: async (req, res) => {
         try {
-            User.find().then((result) => {
+            const is_active=1
+            User.find({is_active}).then((result) => {
 
                 res.json(result)
             })

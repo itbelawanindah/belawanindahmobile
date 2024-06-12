@@ -1,7 +1,7 @@
 const express = require('express')
 const bodyParser = require('body-parser')
 // const cookieParser = require('cookie-parser')
-
+const cors = require('cors')
 
 
 const Connection = require('./utils/database')
@@ -14,8 +14,6 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
    extended: true
 }))
-// app.use(cookieParser)
-
 
 
 Connection();
@@ -23,7 +21,12 @@ const ar = require('./routes/api/authRoute')
 const ac = require('./routes/api/assetCategoryRoute')
 const ur = require('./routes/api/userRoute')
 
-
+// app.use(cookieParser)
+app.use(cors({
+   origin: 'https://localhost:3000',
+   methods:['GET','POST','PUT','DELETE','PATCH'],
+   allowedHeaders: 'Content-Type,Authorization',
+}))
 app.use('/api/v1', ar)
 app.use('/api/v2', ur)
 app.use('/api/v2', ac)

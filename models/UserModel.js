@@ -96,6 +96,10 @@ const userSchema = new Schema({
     type: Date,
     required: false,
   },
+  acId:[{
+    type:Schema.Types.ObjectId,
+    ref:'assetcategories',
+  }]
 });
 
 //static singup method

@@ -75,6 +75,7 @@ module.exports = {
         const {
             email,
             password,
+            is_active
             // last_login:moment().format('YYYY-MM-DD HH:mm:ss'),
         } = req.body
 
@@ -88,7 +89,8 @@ module.exports = {
            
 
             const user = await User.findOne({
-                email
+                email,
+                is_active:1
             })
             if (!user) {
                 throw Error('incorrect email')
