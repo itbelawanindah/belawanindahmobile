@@ -1,28 +1,30 @@
-const { deserialize } = require('mongodb')
+const {
+  deserialize
+} = require('mongodb')
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 const acSchema = new Schema({
-    displayName:{
-        type:String,
-        required:true,
+  displayName: {
+    type: String,
+    required: true,
 
-    },
-    description:{
-        type:String,
-        required:false,
-    },
-    userId:[{
-        type:Schema.Types.ObjectId,
-        ref : 'User',
-        required: true
-    }],
-    
+  },
+  description: {
+    type: String,
+    required: false,
+  },
+  userId: [{
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
+  }],
+
   is_active: {
     type: Number,
     required: false,
   },
-  
+
   created_at: {
     type: Date,
     required: false,
@@ -44,6 +46,6 @@ const acSchema = new Schema({
 
 
 
-    
+
 })
-module.exports = mongoose.model('assetcategories',acSchema)
+module.exports = mongoose.model('assetcategories', acSchema)

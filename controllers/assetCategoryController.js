@@ -26,7 +26,12 @@ module.exports = {
             if (!displayName) {
                 throw new Error('Please enter category name');
             }
-    
+            const exists = await ac.findOne({
+                displayName
+            })
+            if(exists) {
+                throw new Error('Assume category already exists')
+            }
             // Assuming req.user is populated by the requireAuth middleware
             const acs = new ac({
                 displayName,
@@ -70,12 +75,17 @@ module.exports = {
         try {
             if (!displayName) {
                 throw new Error('Please enter category name');
+            } const exists = await ac.findOne({
+                displayName
+            })
+            if(exists) {
+                throw new Error('Assume category already exists')
             }
             const Updateac = await ac.findByIdAndUpdate(req.params._id,{
                 displayName,
                 description,
                 userId: req.user._id,
-                updated_at: moment().format('YYYY-MM-DD HH:mm:ss')
+                updated_at: moment().format('YYYY-MM-DD HH:mm:ss'),
             })
     
             res.status(200).json({
@@ -98,13 +108,14 @@ module.exports = {
             const deleteAc = await ac.findByIdAndUpdate(req.params._id,{
                 is_active:0,
                 userId: req.user._id,
-                deleted_at: moment().format('YYYY-MM-DD HH:mm:ss')
+                deleted_at: moment().format('YYYY-MM-DD HH:mm:ss'),
+                userId:req.user._id,
             })
     
             res.status(200).json({
                 success: true,
                 data: deleteAc,
-                message:"Asset Category berhasil Update"
+                message:"Asset Category Success Deleted"
             });
     
         } catch (err) {

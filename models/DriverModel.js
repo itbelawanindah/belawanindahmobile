@@ -6,7 +6,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
 
-const userSchema = new Schema({
+const driverSchema = new Schema({
   name: {
     type: String,
     required: false,
@@ -99,36 +99,11 @@ const userSchema = new Schema({
     type: Date,
     required: false,
   },
-  acId: [{
+  userId: {
     type: Schema.Types.ObjectId,
-    ref: 'assetcategories',
-  }]
+    ref: 'User',
+  }
 });
 
-//static singup method
-// userSchema.statics.signup = async (email,password,username,name,roles,is_active,created_at) =>{
 
-//   const Exist = await this.findOne({email})
-
-//   if(Exist){
-//     throw Error('Email already exists')
-//   }
-
-//   const salt = await bcrypt.genSalt(10)
-//   const hash = await bcrypt.hash(password,salt)
-
-//   const user = await this.create({
-//     email,
-//     password  :hash,
-//     username,
-//     name,
-//     roles     :'admins-Author',
-//     is_active :1,
-//     created_at: moment().format('YYYY-MM-DD HH:mm:ss'),
-
-//   })
-
-//   return user
-// }
-
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('drivers', driverSchema);

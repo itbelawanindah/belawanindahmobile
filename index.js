@@ -17,9 +17,11 @@ app.use(bodyParser.urlencoded({
 
 
 Connection();
-const ar = require('./routes/api/authRoute')
-const ac = require('./routes/api/assetCategoryRoute')
-const ur = require('./routes/api/userRoute')
+const ar    = require('./routes/api/authRoute')
+const ac    = require('./routes/api/assetCategoryRoute')
+const ur    = require('./routes/api/userRoute')
+const itr   = require('./routes/api/itemsRoute')
+const drv   = require('./routes/api/driverRoute')
 
 // app.use(cookieParser)
 app.use(cors({
@@ -30,6 +32,8 @@ app.use(cors({
 app.use('/api/v1', ar)
 app.use('/api/v2', ur)
 app.use('/api/v2', ac)
+app.use('/api/v2',itr)
+app.use('/api/v3',drv)
 app.get('/', (req, res) => {
 
    res.send('hello from simple server :)')
