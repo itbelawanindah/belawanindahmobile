@@ -27,6 +27,10 @@ const driverSchema = new Schema({
     type: String,
     required: false,
   },
+  noPolisi: {
+    type: String,
+    required: false,
+  },
   description: {
     type: String,
     required: false,
@@ -106,4 +110,4 @@ const driverSchema = new Schema({
 });
 
 
-module.exports = mongoose.model('drivers', driverSchema);
+module.exports = mongoose.model('Driver', driverSchema);

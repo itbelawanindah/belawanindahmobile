@@ -1,7 +1,8 @@
-const User = require('../models/UserModel');
+const User      = require('../models/UserModel');
+const Driver    = require('../models/DriverModel');
 const validator = require('validator');
-const bcrypt = require("bcrypt");
-const moment = require('moment');
+const bcrypt    = require("bcrypt");
+const moment    = require('moment');
 moment.locale('id');
 
 
@@ -109,5 +110,44 @@ module.exports = {
             res.status(400).json({error: error.message})
         }
         // res.json({msg:"login user"})
-    }
+    },
+    login_driver:async(req,res)=>{
+        const {
+            email,
+            password,
+            is_active
+            // last_login:moment().format('YYYY-MM-DD HH:mm:ss'),
+        } = req.body
+
+        try {
+            if(!email || !password ) {
+                throw Error('All fields must be filled')
+            }
+            if(!validator.isEmail(email)){
+                throw Error('Email is not valid')
+            }
+           
+
+            const driver = await Driver.findOne({
+                email,
+                is_active:1
+            })
+            if (!driver) {
+                throw Error('incorrect email')
+            }
+
+            const match = await bcrypt.compare(password, driver.password)
+            if(!match) {
+                throw Error('incorrect password')
+            }
+
+            //create token
+            const token = createToken(driver._id)
+
+            res.status(200).json({email,token})
+        } catch (error) {
+            res.status(400).json({error: error.message})
+        }
+        // res.json({msg:"login user"})
+    },
 }

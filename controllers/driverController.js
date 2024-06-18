@@ -17,6 +17,7 @@ const createToken = (_id) =>{
 }
 
 module.exports = {
+    
     get_all_driver: async (req, res) => {
         try {
             const is_active = 1
@@ -93,6 +94,7 @@ module.exports = {
             res.status(200).json({
                 email,
                 data: drivers,
+                token: token
             })
         } catch (error) {
             res.status(400).json({
@@ -116,6 +118,7 @@ module.exports = {
                 name: req.body.name,
                 username: req.body.username,
                 email,
+                noPolisi: req.body.noPolisi,
                 description: req.body.description,
                 address: req.body.address,
                 mobile: req.body.mobile,
@@ -161,7 +164,6 @@ module.exports = {
             Driver.findByIdAndUpdate(req.params._id, {
                     password: hash,
                     updated_password: moment().format('YYYY-MM-DD HH:mm:ss'),
-                    userId:req.user._id,
 
                 })
                 .then((result) => {

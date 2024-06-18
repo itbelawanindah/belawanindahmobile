@@ -4,35 +4,34 @@ const {
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const orderSchema = new Schema({
-    lokasiMuat: {
+const LocationSchema = new Schema({
+    origin: {
         type: String,
         required: true,
-
     },
-    lokasiTujuan: {
+    destination: {
         type: String,
-        required: false,
+        required: true,
+    },
+    directions: {
+        type: Object,
+        required: true,
+    },
+    distanceMatrix: {
+        type: Object,
+        required: true,
     },
     itemId: {
         type: Schema.Types.ObjectId,
         ref: 'Item',
         required: true
     },
-    JarakTempuh: {
-        type: String,
-        required: false,
-    },
-    Estimasi: {
-        type: String,
-        required: false,
-    },
     userId: {
         type: Schema.Types.ObjectId,
         ref: 'User',
         required: true
     },
-    
+
     driverId: {
         type: Schema.Types.ObjectId,
         ref: 'Driver',
@@ -67,4 +66,4 @@ const orderSchema = new Schema({
 
 
 })
-module.exports = mongoose.model('Order', orderSchema)
+module.exports = mongoose.model('Location', LocationSchema)

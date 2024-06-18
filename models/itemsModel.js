@@ -19,6 +19,11 @@ const itemsSchema = new Schema({
         ref: 'User',
         required: true
     }],
+    orderId: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Order',
+        required: true
+    }],
 
     is_active: {
         type: Number,
@@ -48,4 +53,4 @@ const itemsSchema = new Schema({
 
 
 })
-module.exports = mongoose.model('items', itemsSchema)
+module.exports = mongoose.model('Item', itemsSchema)
